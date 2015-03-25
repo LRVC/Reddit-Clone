@@ -8,4 +8,11 @@
   <%= link_to 'Sign In', sign_in_path %>
 <% end %></br>
 
-Posts:
+Posts:</br>
+<% @posts.each do |post| %>
+  <%= link_to post.title, post_path(post) %></br>
+  <% if current_user && current_user.id == post.user_id %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Delete', post_path(post), method: :delete %>
+  <% end %>
+<% end %>
